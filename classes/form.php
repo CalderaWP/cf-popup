@@ -22,6 +22,15 @@ class CF_Popup_Form {
 	}
 
 	protected function set_options( $options ){
+		/**
+		 * Filter options for a popup
+		 *
+		 * @since 0.0.2
+		 *
+		 * @param array $options Options to pass to JS land
+		 * @param string $form_id Form ID
+		 */
+		$options = apply_filters( 'cf_popup_popup_options', $options, $this->form[ 'ID'] );
 		$this->options = wp_parse_args(
 			$options,
 			array(
