@@ -38,7 +38,7 @@ class CF_Popup_Form {
 		<script>
 			( function ( $ ) {
 				var cookieName = "<?php echo CF_Popup_Cookie::cookie_name( $this->form[ 'ID' ] ); ?>";
-				if( 'dismissed' == $.cookie( cookieName ) ){
+				if( 'dismissed' == Cookies.get( cookieName ) ){
 					return;
 				}
 
@@ -73,7 +73,7 @@ class CF_Popup_Form {
 
 
 				$(document).on('closing', '#<?php echo esc_attr( $this->modal_id_attr() ); ?>', function (e) {
-					$.cookie( cookieName, 'dismissed', { expires: 7 } );
+					Cookies.set( cookieName, 'dismissed', { expires: 7 } );
 
 				});
 			})( jQuery )
