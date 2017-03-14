@@ -58,7 +58,7 @@ class CF_Popup_Form {
 				var _ouibounce = ouibounce(false, {
 					aggressive: true,
 					sitewide: true,
-					cookieDomain: '.hiroy.clib',
+					cookieDomain: '<?php echo COOKIE_DOMAIN; ?>',
 					timer: 0,
 					cookieExpire: 0,
 					callback: function() { open(); }
