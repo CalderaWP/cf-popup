@@ -5,6 +5,8 @@ Caldera Forms as popups for list building. This is a under development. You prob
 ## Usage
 **This plugin has no user interface, you probably should not use it**
 
+Admin interface is under development in the admin branch. 
+
 * Add your form in one of two ways.
 1) Choose one form to be used always (unless dismissed) -
 ```
