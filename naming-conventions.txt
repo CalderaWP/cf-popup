@@ -1,0 +1,5 @@
+Plugin Name -- Popups for Caldera Forms
+Text domain -- cf-popup
+Function prefix -- cf_popup
+Class prefix - CF_Popup
+Filter Prefix -- cf_popup

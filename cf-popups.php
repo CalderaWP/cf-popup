@@ -1,8 +1,20 @@
 <?php
 /**
  Plugin Name: Caldera Forms Popup
- Version: 0.0.2
+ Version: 0.0.3
  */
+
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+
+// define constants
+define( 'CF_POPUP_PATH',  plugin_dir_path( __FILE__ ) );
+define( 'CF_POPUP_URL',  plugin_dir_url( __FILE__ ) );
+define( 'CF_POPUP_VER', '0.0.3' );
+define( 'CF_POPUP_CORE',  __FILE__ );
 
 /**
  * Load scripts
@@ -32,6 +44,18 @@ function cf_popup_enqueue(){
 add_action( 'caldera_forms_includes_complete', function(){
 	Caldera_Forms_Autoloader::add_root( 'CF_Popup', __DIR__ . '/classes' );
 });
+
+/**
+ * Loads CF Popup submenu item in admin
+ *
+ * @since 0.0.3
+ */
+add_action( 'caldera_forms_includes_complete', function(){
+	if( is_admin() ){
+		new CF_Popup_Menu();
+	}
+
+},11);
 
 
 /**
