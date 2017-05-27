@@ -41,5 +41,4 @@ This is optional. By default popups are delayed by 2 seconds. Options allow for 
 ```
 
 
-
 Copyright 2017 Josh Pollock for CalderaWP LLC. License under the terms of the GPL v2 or later.

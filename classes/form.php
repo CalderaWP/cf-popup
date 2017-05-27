@@ -1,25 +1,33 @@
 <?php
 class CF_Popup_Form {
 
+	/**
+	 * Form config
+	 *
+	 * @var array
+	 */
 	protected $form;
 
+	/**
+	 * Options
+	 *
+	 * @var array
+	 */
 	protected $options;
+
+	/**
+	 * CF_Popup_Form constructor.
+	 *
+	 * @param array $form Form config
+	 * @param array $options Optional config options
+	 */
 	public function __construct(array $form, array  $options = array()) {
 		$this->form = $form;
 		$this->set_options( $options );
-		if ( $this->should_load() ){
-			add_action( 'wp_footer', array( $this, 'footer' ), 400 );
-		}
+		add_action( 'wp_footer', array( $this, 'footer' ), 400 );
 	}
 
-	protected function should_load(){
-		$load = true;
-		if( CF_Popup_Cookie::is_dismissed( $this->form[ 'ID' ] ) ) {
-			$load = false;
-		}
 
-		return apply_filters( 'cf_popup_load', $load, $this->form );
-	}
 
 	protected function set_options( $options ){
 		/**
