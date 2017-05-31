@@ -125,5 +125,14 @@ function cf_popup_forms(){
 	return apply_filters( 'cf_popup_forms', array() );
 }
 
+/**
+ * Adds REST API routes for settings.
+ *
+ * @since 0.0.3
+ */
+add_action( 'caldera_forms_rest_api_init', function(){
+	$api = new CF_Popup_API();
 
+	$api->add_routes();
 
+});

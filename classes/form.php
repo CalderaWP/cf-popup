@@ -40,13 +40,7 @@ class CF_Popup_Form {
 		 */
 		$options = apply_filters( 'cf_popup_popup_options', $options, $this->form[ 'ID'] );
 		$this->options = wp_parse_args(
-			$options,
-			array(
-				'exit_intent' => false,
-				'delay' => 2000,
-				'before' => '',
-				'after' => ''
-			)
+			$options, CF_Popup_Settings::get_defaults()
 		);
 	}
 
