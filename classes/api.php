@@ -19,7 +19,7 @@ class CF_Popup_API {
 				'callback' => array( $this, 'update_settings' ),
 				'args' => array (
 					'forms' => array (
-						'type' => 'array',
+						'type' => 'object',
 						'required' => 'true'
 					)
 				),
@@ -61,7 +61,9 @@ class CF_Popup_API {
 
 		CF_Popup_Settings::save_settings( $settings );
 
-		return rest_ensure_response( CF_Popup_Settings::get_settings() )->set_status( 201 );
+		$response = rest_ensure_response( CF_Popup_Settings::get_settings() );
+		$response->set_status(201);
+		return $response;
 
 	}
 	/**

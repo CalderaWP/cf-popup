@@ -15,18 +15,9 @@ class CF_Popup_Settings {
 	protected static $option_key = 'cf_popup_settings';
 
 	/**
-	 * Sets default settings
-	 *
-	 * @var array
-	 */
-	protected static $default_settings = array(
-
-	);
-
-	/**
 	 * Gets defaults
 	 *
-	 *
+	 * @since 0.0.3
 	 *
 	 * @return array
 	 */

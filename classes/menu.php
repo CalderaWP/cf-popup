@@ -60,11 +60,21 @@ class CF_Popup_Menu {
 	 * @param $hook
 	 */
 	public function assets( $hook ){
+
 		if ( isset( $_GET[ 'page' ] ) && $this->menu_slug == $_GET[ 'page' ] ) {
 			Caldera_Forms_Admin_Assets::enqueue_style('admin');
 			wp_enqueue_style( $this->menu_slug, CF_POPUP_URL.'/assets/admin.css' );
 			wp_enqueue_script( $this->menu_slug, CF_POPUP_URL.'assets/admin.js', array('jquery'), CF_POPUP_VER );
+
+			wp_localize_script($this->menu_slug,'CF_POPUP', array(
+			      'api' => esc_url_raw( Caldera_Forms_API_Util::url( 'cf-popup/settings' ) ),
+                  'nonce' => wp_create_nonce ( 'wp_rest' ),
+                  'strings' => array (
+                          'saved' => esc_html__( 'Settings Saved', 'cf-popup' )
+                  )
+            ));
 		}
+
 	}
 
 	/**
