@@ -21,14 +21,19 @@ class CF_Popup_Form {
 	 * @param array $form Form config
 	 * @param array $options Optional config options
 	 */
-	public function __construct(array $form, array  $options = array()) {
+	public function __construct( array $form, array $options = array() ) {
 		$this->form = $form;
 		$this->set_options( $options );
 		add_action( 'wp_footer', array( $this, 'footer' ), 400 );
 	}
 
-
-
+	/**
+     * Sets the options property.
+     *
+     * @since 0.0.2
+     *
+	 * @param $options
+	 */
 	protected function set_options( $options ){
 		/**
 		 * Filter options for a popup
@@ -44,6 +49,13 @@ class CF_Popup_Form {
 		);
 	}
 
+	/**
+	 * Outputs inline JavaScript for popup
+     *
+     * @since 0.0.2
+     *
+     * @uses "wp_footer" action
+	 */
 	public function footer(){
 		?>
 		<script>

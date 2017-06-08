@@ -80,4 +80,25 @@ class CF_Popup_Settings {
 		update_option ( self::$option_key, $settings );
 
 	}
+
+	/**
+	 * Loads settings for a specific form's popup settings
+	 *
+	 * @since 0.0.3
+	 *
+	 * @param string $form_id ID of the form
+	 *
+	 * @return array
+	 */
+	public static function get_form( $form_id ) {
+
+		$settings = self::get_settings();
+
+		if ( isset($settings[ $form_id ]) ) {
+			return $settings[ $form_id ];
+		} else {
+			return self::get_defaults();
+		}
+
+	}
 }

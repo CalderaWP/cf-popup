@@ -106,7 +106,8 @@ add_action( 'template_redirect', function(){
 
 	if( is_array( $form ) ){
 		add_action( 'wp_enqueue_scripts', 'cf_popup_enqueue', 50 );
-		new CF_Popup_Form( $form );
+		$settings = CF_Popup_Settings::get_form( $form[ 'ID' ] );
+		new CF_Popup_Form( $form, $settings );
 	}
 });
 /**
