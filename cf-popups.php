@@ -119,8 +119,8 @@ add_action( 'template_redirect', function(){
 function cf_popup_forms(){
 	$cf_popup_forms = array();
 	$settings = CF_Popup_Settings::get_settings();
-	foreach ( $settings as $form_id => $save ) {
-		if ( 1 == 1 ) {
+	foreach ( $settings as $form_id => $form_settings ) {
+		if ( true == $form_settings[ 'enabled' ] ) {
 			$cf_popup_forms[] = $form_id;
 		}
 	}
