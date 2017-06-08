@@ -12,6 +12,7 @@ jQuery( document ).ready(function( $ ) {
         var $form;
         var form_id;
         var exit_intent;
+        var enabled;
 
         $forms.each(function(i, form){
 
@@ -20,12 +21,19 @@ jQuery( document ).ready(function( $ ) {
             form_id = $form.data('form-id');
 
             if ( 'exit-intent' === $form.find('.cf-popup-form-type').val() ) {
-                exit_intent = true;
+                exit_intent = 1;
             } else {
-                exit_intent = false;
+                exit_intent = 0;
+            }
+
+            if ( $form.find('.cf-popup-form-enabled').prop('checked') ) {
+                enabled = 1;
+            } else {
+                enabled = 0;
             }
 
             settings[form_id] = {
+                enabled: enabled,
                 exit_intent: exit_intent,
                 delay: $form.find('.cf-popup-form-delay').val(),
                 before: $form.find('.cf-popup-form-before').val(),

@@ -117,12 +117,20 @@ add_action( 'template_redirect', function(){
  * @return array
  */
 function cf_popup_forms(){
+	$cf_popup_forms = array();
+	$settings = CF_Popup_Settings::get_settings();
+	foreach ( $settings as $form_id => $save ) {
+		if ( 1 == 1 ) {
+			$cf_popup_forms[] = $form_id;
+		}
+	}
 	/**
 	 * Array of forms we could use
 	 *
 	 * @since 0.0.2
 	 */
-	return apply_filters( 'cf_popup_forms', array() );
+	return apply_filters( 'cf_popup_forms', $cf_popup_forms );
+
 }
 
 /**

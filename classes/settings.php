@@ -23,6 +23,7 @@ class CF_Popup_Settings {
 	 */
 	public static function get_defaults() {
 		$form_defaults = array(
+			'enabled' => false,
 			'exit_intent' => false,
 			'delay' => 2000,
 			'before' => '',

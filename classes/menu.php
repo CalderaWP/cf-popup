@@ -98,10 +98,17 @@ class CF_Popup_Menu {
 		</div>
 		<form id="cf-popup-settings-form">
 			<?php
+                $settings = CF_Popup_Settings::get_settings();
 				$forms = Caldera_Forms_Forms::get_forms(true);
 				foreach( $forms as $form ) {
 					$id = $form['ID'];
+					if ( isset( $settings[ $id ] ) ) {
+                        $form_settings = $settings[ $id ];
+                    } else {
+					    $form_settings = CF_Popup_Settings::get_defaults();
+                    }
 					$name = $form['name'];
+					$enabled_id_attribute = 'cf-popup-enabled-setting'.$id;
 					$delay_id_attribute = 'cf-popup-delay-setting-'.$id;
 					$type_id_attribute = 'cf-popup-type-setting-'.$id;
 					$before_id_attribute = 'cf-popup-before-setting-'.$id;
@@ -111,17 +118,21 @@ class CF_Popup_Menu {
                     <div class="cf-popup-form" data-form-id="<?php echo esc_attr($id); ?>">
 
                         <div class="caldera-config-group">
+                            <label for="<?php echo esc_attr($enabled_id_attribute); ?>">
+                                <?php esc_html_e('Enabled?', 'cf-popup'); ?>
+                            </label>
+                            <input type="checkbox" class="cf-popup-form-enabled" id="<?php echo esc_attr($enabled_id_attribute); ?>" <?php if ( true == (bool)$form_settings[ 'enabled' ]) { echo 'checked'; } ?> />
+                        </div>
+
+                        <div class="caldera-config-group">
                             <label for="<?php echo esc_attr($type_id_attribute); ?>">
                                 <?php esc_html_e( 'Popup Type', 'cf-popup' ); ?>
                             </label>
                             <select id="<?php echo esc_attr($type_id_attribute); ?>" class="cf-popup-form-type">
-                                <option value="disabled">
-                                    <?php esc_html_e('Disabled', 'cf-popup'); ?>
-                                </option>
-                                <option value="delayed">
+                                <option value="delayed" <?php if ( false == (bool)$form_settings[ 'exit_intent' ] ) { echo 'selected'; } ?>>
                                     <?php esc_html_e('Delayed', 'cf-popup'); ?>
                                 </option>
-                                <option value="exit-intent">
+                                <option value="exit-intent" <?php if ( true == (bool)$form_settings[ 'exit_intent' ] ) { echo 'selected'; } ?>>
                                     <?php esc_html_e('Exit Intent', 'cf-popup'); ?>
                                 </option>
                             </select>
@@ -131,7 +142,7 @@ class CF_Popup_Menu {
                             <label for="<?php echo esc_attr($delay_id_attribute); ?>">
                                 <?php esc_html_e( 'Popup Delay Time', 'cf-popup' ); ?>
                             </label>
-                            <input class="cf-popup-form-delay" id="<?php echo esc_attr($delay_id_attribute); ?>" type="number" min="0" step="100" aria-describedby="<?php echo esc_attr($delay_id_attribute.'-description'); ?>"/>
+                            <input value="<?php echo esc_attr( $form_settings[ 'delay' ] ) ?>" class="cf-popup-form-delay" id="<?php echo esc_attr($delay_id_attribute); ?>" type="number" min="0" step="100" aria-describedby="<?php echo esc_attr($delay_id_attribute.'-description'); ?>"/>
                             <p class="description" id="<?php echo esc_attr($delay_id_attribute.'-description'); ?>">
                                 <?php esc_html_e( 'Enter time in milliseconds.', 'cf-popup'); ?>
                             </p>
@@ -142,7 +153,7 @@ class CF_Popup_Menu {
                                 <?php esc_html_e( 'Text Above Form', 'cf-popup' ); ?>
                             </label>
                             <textarea class="cf-popup-form-before" id="<?php echo esc_attr($before_id_attribute); ?>" aria-describedby="<?php echo esc_attr($before_id_attribute.'-description'); ?>">
-
+                                <?php echo $form_settings[ 'before' ]; ?>
                             </textarea>
                             <p class="description" id="<?php echo esc_attr($before_id_attribute.'-description'); ?>">
                                 <?php esc_html_e( 'Enter the text to display above your form in your popup.', 'cf-popup'); ?>
@@ -154,7 +165,7 @@ class CF_Popup_Menu {
                                 <?php esc_html_e( 'Text Below Form', 'cf-popup' ); ?>
                             </label>
                             <textarea class="cf-popup-form-after" id="<?php echo esc_attr($after_id_attribute); ?>" aria-describedby="<?php echo esc_attr($after_id_attribute.'-description'); ?>">
-
+                                <?php echo $form_settings[ 'after' ]; ?>
                             </textarea>
                             <p class="description" id="<?php echo esc_attr($after_id_attribute.'-description'); ?>">
                                 <?php esc_html_e( 'Enter the text to display below your form in your popup.', 'cf-popup'); ?>
