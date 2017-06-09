@@ -3,6 +3,16 @@
  */
 jQuery( document ).ready(function( $ ) {
 
+    function hide_popup_settings($clicked) {
+        var $wrap = $('#' + $clicked.data('settings-wrap'));
+
+        if ($clicked.prop('checked')) {
+            $wrap.show().attr('aria-hidden', 'false');
+        } else {
+            $wrap.hide().attr('aria-hidden', 'true');
+        }
+    }
+
     $('#cf-popup-settings-form').on('submit', function(event) {
 
         event.preventDefault();
@@ -60,6 +70,16 @@ jQuery( document ).ready(function( $ ) {
 
         })
 
+    })
+
+    $('.cf-popup-form-enabled').on('change', function() {
+        var $clicked = $(this);
+        hide_popup_settings($clicked);
+    })
+
+    $('.cf-popup-form-enabled').each(function(){
+        var $clicked = $(this);
+        hide_popup_settings($clicked);
     })
 
 });
