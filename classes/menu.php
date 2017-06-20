@@ -114,6 +114,7 @@ class CF_Popup_Menu {
 					$before_id_attribute = 'cf-popup-before-setting-'.$id;
 					$after_id_attribute = 'cf-popup-after-setting-'.$id;
 					$settings_wrap_id_attribute = 'cf-popup-settings-wrap-'.$id;
+					$delay_id_attribute_wrap = 'cf-popup-delay-attribute-wrap-'.$id;
 					echo '<h2>'.$name.'</h2>';
 			?>
                     <div class="cf-popup-form" data-form-id="<?php echo esc_attr($id); ?>">
@@ -131,7 +132,7 @@ class CF_Popup_Menu {
                                 <label for="<?php echo esc_attr($type_id_attribute); ?>">
                                     <?php esc_html_e( 'Popup Type', 'cf-popup' ); ?>
                                 </label>
-                                <select id="<?php echo esc_attr($type_id_attribute); ?>" class="cf-popup-form-type">
+                                <select id="<?php echo esc_attr($type_id_attribute); ?>" class="cf-popup-form-type" data-delay-wrap="<?php echo esc_attr($delay_id_attribute_wrap); ?>">
                                     <option value="delayed" <?php if ( false == (bool)$form_settings[ 'exit_intent' ] ) { echo 'selected'; } ?>>
                                         <?php esc_html_e('Delayed', 'cf-popup'); ?>
                                     </option>
@@ -141,7 +142,7 @@ class CF_Popup_Menu {
                                 </select>
                             </div>
 
-                            <div class="caldera-config-group">
+                            <div class="caldera-config-group" id="<?php echo esc_attr($delay_id_attribute_wrap); ?>">
                                 <label for="<?php echo esc_attr($delay_id_attribute); ?>">
                                     <?php esc_html_e( 'Popup Delay Time', 'cf-popup' ); ?>
                                 </label>

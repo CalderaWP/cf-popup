@@ -13,6 +13,16 @@ jQuery( document ).ready(function( $ ) {
         }
     }
 
+    function hide_delay_settings($clicked) {
+        var $wrap = $('#' + $clicked.data('delay-wrap'));
+
+        if ('exit-intent' !== $clicked.val()) {
+            $wrap.show().attr('aria-hidden', 'false');
+        } else {
+            $wrap.hide().attr('aria-hidden', 'true');
+        }
+    }
+
     $('#cf-popup-settings-form').on('submit', function(event) {
 
         event.preventDefault();
@@ -80,6 +90,15 @@ jQuery( document ).ready(function( $ ) {
     $('.cf-popup-form-enabled').each(function(){
         var $clicked = $(this);
         hide_popup_settings($clicked);
+    })
+
+    $('.cf-popup-form-type').on('change', function() {
+        var $clicked = $(this);
+        hide_delay_settings($clicked);
+    })
+    $('.cf-popup-form-type').each(function(){
+        var $clicked = $(this);
+        hide_delay_settings($clicked);
     })
 
 });
