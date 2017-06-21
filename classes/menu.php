@@ -156,9 +156,10 @@ class CF_Popup_Menu {
                                 <label for="<?php echo esc_attr($before_id_attribute); ?>">
                                     <?php esc_html_e( 'Text Above Form', 'cf-popup' ); ?>
                                 </label>
-                                <textarea class="cf-popup-form-before" id="<?php echo esc_attr($before_id_attribute); ?>" aria-describedby="<?php echo esc_attr($before_id_attribute.'-description'); ?>">
-                                    <?php echo $form_settings[ 'before' ]; ?>
-                                </textarea>
+                                <?php wp_editor($form_settings[ 'before' ], $before_id_attribute, array(
+                                        'editor_class' => 'cf-popup-form-before',
+                                        'textarea_name' => $before_id_attribute
+                                ) ); ?>
                                 <p class="description" id="<?php echo esc_attr($before_id_attribute.'-description'); ?>">
                                     <?php esc_html_e( 'Enter the text to display above your form in your popup.', 'cf-popup'); ?>
                                 </p>
@@ -168,9 +169,10 @@ class CF_Popup_Menu {
                                 <label for="<?php echo esc_attr($after_id_attribute); ?>">
                                     <?php esc_html_e( 'Text Below Form', 'cf-popup' ); ?>
                                 </label>
-                                <textarea class="cf-popup-form-after" id="<?php echo esc_attr($after_id_attribute); ?>" aria-describedby="<?php echo esc_attr($after_id_attribute.'-description'); ?>">
-                                    <?php echo $form_settings[ 'after' ]; ?>
-                                </textarea>
+	                            <?php wp_editor($form_settings[ 'after' ], $after_id_attribute, array(
+		                            'editor_class' => 'cf-popup-form-after',
+                                    'textarea_name' => $after_id_attribute
+	                            ) ); ?>
                                 <p class="description" id="<?php echo esc_attr($after_id_attribute.'-description'); ?>">
                                     <?php esc_html_e( 'Enter the text to display below your form in your popup.', 'cf-popup'); ?>
                                 </p>

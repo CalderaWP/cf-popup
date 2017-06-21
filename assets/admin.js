@@ -56,8 +56,8 @@ jQuery( document ).ready(function( $ ) {
                 enabled: enabled,
                 exit_intent: exit_intent,
                 delay: $form.find('.cf-popup-form-delay').val(),
-                before: $form.find('.cf-popup-form-before').val(),
-                after: $form.find('.cf-popup-form-after').val()
+                before: tinymce.get('cf-popup-before-setting-'+form_id).getContent(),
+                after: tinymce.get('cf-popup-after-setting-'+form_id).getContent()
             };
 
         });
